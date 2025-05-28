@@ -1,0 +1,39 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+.rsw-ce {
+    @apply bg-white min-h-60 dark:bg-transparent dark:border-white/10;
+}
+.rsw-editor {
+    @apply dark:border-white/10;
+}
+.rsw-toolbar {
+    @apply bg-white border-gray-100 dark:bg-white/10;
+}
+.rsw-btn {
+    @apply inline-flex justify-center items-center dark:text-white/50 dark:hover:bg-white/10;
+}
+
+.typo,
+.rsw-ce {
+    @apply leading-relaxed text-base;
+    a {
+        @apply text-blue-500;
+    }
+    p {
+        @apply my-4 first:mt-0;
+    }
+    ul {
+        @apply list-disc pl-6 my-4 first:mt-0;
+    }
+    ol {
+        @apply list-decimal pl-6 my-4 first:mt-0;
+    }
+    h1 {
+        @apply text-2xl font-medium my-4 first:mt-0;
+    }
+    h2 {
+        @apply text-xl font-medium my-4 first:mt-0;
+    }
+}
