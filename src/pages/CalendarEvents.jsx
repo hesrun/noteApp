@@ -1,14 +1,9 @@
-import { Calendar, Badge, Spin } from 'antd';
+import { Calendar, Spin } from 'antd';
 import { observer } from 'mobx-react-lite';
 import useTasks from '../hooks/useTasks';
 import { useEffect } from 'react';
 import tasksStore from '../stores/tasksStore';
-import {
-    LuCheck,
-    LuCircle,
-    LuCircleCheck,
-    LuCircleCheckBig,
-} from 'react-icons/lu';
+import { LuCircle, LuCircleCheckBig } from 'react-icons/lu';
 
 const CalendarEvents = observer(() => {
     const { getTasks } = useTasks();

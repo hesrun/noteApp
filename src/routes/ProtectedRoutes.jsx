@@ -3,8 +3,6 @@ import authStore from '../stores/authStore';
 import { Spin } from 'antd';
 import { Navigate, Outlet } from 'react-router';
 
-import React from 'react';
-
 const Loader = () => {
     return (
         <div className="fixed w-full h-full flex items-center justify-center">

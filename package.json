@@ -17,6 +17,7 @@
     "antd": "^5.25.1",
     "mobx": "^6.13.7",
     "mobx-react-lite": "^4.1.0",
+    "prettier": "^3.5.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.56.4",
