@@ -1,4 +1,5 @@
 import {
+    LuBookUser,
     LuCalendarDays,
     LuClipboardCheck,
     LuLayoutDashboard,
@@ -17,6 +18,10 @@ const Sidebar = () => {
                 <NavLink to="/dashboard" className={linkClass}>
                     <LuLayoutDashboard className="text-xl" />
                     Dashboard
+                </NavLink>
+                <NavLink to="/persons" className={linkClass}>
+                    <LuBookUser className="text-xl" />
+                    Persons
                 </NavLink>
                 <NavLink to="/notes" className={linkClass}>
                     <LuNotebookText className="text-xl" />

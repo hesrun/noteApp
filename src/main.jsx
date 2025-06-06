@@ -24,6 +24,7 @@ import Tasks from './pages/Tasks.jsx';
 import MessageProvider from './context/MessageContext.jsx';
 import authStore from './stores/authStore.js';
 import CalendarEvents from './pages/CalendarEvents.jsx';
+import Persons from './pages/Persons.jsx';
 
 const App = observer(() => {
     useEffect(() => {
@@ -70,6 +71,10 @@ const App = observer(() => {
                                         element={
                                             <CalendarEvents name="Calendar" />
                                         }
+                                    />
+                                    <Route
+                                        path="persons"
+                                        element={<Persons name="Persons" />}
                                     />
                                 </Route>
                             </Route>
