@@ -40,7 +40,7 @@ class PersonsStore {
         if (error) {
             this.error = error;
         } else {
-            this.personData = data;
+            this.persons = [...this.persons, ...data];
         }
 
         this.loading = false;
@@ -65,13 +65,21 @@ class PersonsStore {
         this.loading = true;
         this.error = null;
 
-        const { error } = await supabase
+        const { data, error } = await supabase
             .from(tableName)
             .update(personData)
-            .eq('id', id);
+            .eq('id', id)
+            .select();
 
         if (error) {
             this.error = error;
+        } else if (data && data.length > 0) {
+            console.log('data frome store', data);
+            const updatedPerson = data[0];
+            console.log('updatedPerson', updatedPerson);
+            this.persons = this.persons.map((item) =>
+                item.id === updatedPerson.id ? updatedPerson : item
+            );
         }
 
         this.loading = false;

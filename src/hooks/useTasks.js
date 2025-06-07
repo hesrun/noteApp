@@ -2,7 +2,7 @@ import tasksStore from '../stores/tasksStore';
 import useMessage from './useMessage';
 
 const useTasks = () => {
-    const message = useMessage();
+    const { message } = useMessage();
 
     const getTasks = async () => {
         try {

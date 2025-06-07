@@ -2,7 +2,7 @@ import useMessage from './useMessage';
 import personsStore from '../stores/personsStore';
 
 const usePersons = () => {
-    const message = useMessage();
+    const { message } = useMessage();
 
     const getPersons = async () => {
         try {

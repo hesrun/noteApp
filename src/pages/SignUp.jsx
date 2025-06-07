@@ -1,12 +1,12 @@
-import { MailOutlined, LockOutlined } from '@ant-design/icons';
-import { Button, Form, Input, message, notification } from 'antd';
+import { LockOutlined, MailOutlined } from '@ant-design/icons';
+import { Button, Form, Input } from 'antd';
 import { Link } from 'react-router';
 import { observer } from 'mobx-react-lite';
 import authStore from '../stores/AuthStore';
+import useMessage from '../hooks/useMessage.js';
+
 const SignUp = observer(() => {
-    const [messageApi, messageContextHolder] = message.useMessage();
-    const [notificationApi, notificationContextHolder] =
-        notification.useNotification();
+    const { message, notification } = useMessage();
 
     const [form] = Form.useForm();
 
@@ -14,30 +14,27 @@ const SignUp = observer(() => {
         await authStore.signUp(values);
 
         if (authStore.error) {
-            messageApi.open({
+            message.open({
                 type: 'error',
                 content: authStore.error,
             });
         }
         if (authStore.message) {
-            notificationApi.open({
+            notification.success({
                 message: 'Confirm email',
                 description: authStore.message,
-                showProgress: true,
             });
         }
     };
 
     const onFinishFailed = () => {
-        messageApi.open({
+        message.open({
             type: 'error',
             content: 'Fill out the form correctly',
         });
     };
     return (
         <>
-            {messageContextHolder}
-            {notificationContextHolder}
             <div className="m-auto bg-white p-8 shadow-2xl rounded-4xl w-full max-w-100 dark:bg-transparent dark:border dark:border-white/10 transition">
                 <h1 className="text-2xl mb-6 text-center">Create Account</h1>
                 <Form

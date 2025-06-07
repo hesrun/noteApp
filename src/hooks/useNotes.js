@@ -2,7 +2,7 @@ import useMessage from './useMessage';
 import notesStore from '../stores/notesStore';
 
 const useNotes = () => {
-    const message = useMessage();
+    const { message } = useMessage();
 
     const getNotes = async () => {
         try {

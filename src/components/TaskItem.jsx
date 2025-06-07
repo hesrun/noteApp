@@ -1,13 +1,12 @@
 import { Badge, Button, Dropdown } from 'antd';
-import { LuPencil, LuTrash, LuEllipsisVertical, LuCheck } from 'react-icons/lu';
+import { LuCheck, LuEllipsisVertical, LuPencil, LuTrash } from 'react-icons/lu';
 import formatDateEn from '../utils/formatDateEn';
 import daysDiff from '../utils/daysDifference';
-import AddTaskModal from './modals/AddTaskModal';
 import { useState } from 'react';
 import useTasks from '../hooks/useTasks';
-const TaskItem = ({ data }) => {
+
+const TaskItem = ({ data, setIsModalOpen, setCurrentTask }) => {
     const [isComplete, setIsComplete] = useState(data.complete);
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const { removeTask, toggleTask } = useTasks();
 
     const items = [
@@ -18,6 +17,7 @@ const TaskItem = ({ data }) => {
                     onClick={(e) => {
                         e.preventDefault();
                         setIsModalOpen(true);
+                        setCurrentTask(data);
                     }}
                 >
                     Edit
@@ -109,11 +109,6 @@ const TaskItem = ({ data }) => {
                     </div>
                 </div>
             </div>
-            <AddTaskModal
-                isModalOpen={isModalOpen}
-                setIsModalOpen={setIsModalOpen}
-                data={data}
-            />
         </>
     );
 };

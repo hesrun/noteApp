@@ -1,17 +1,18 @@
-import { MailOutlined, LockOutlined } from '@ant-design/icons';
-import { Button, Form, Input, message } from 'antd';
+import { LockOutlined, MailOutlined } from '@ant-design/icons';
+import { Button, Form, Input } from 'antd';
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router';
 import authStore from '../stores/AuthStore';
+import useMessage from '../hooks/useMessage.js';
 
 const SignIn = observer(() => {
-    const [messageApi, contextHolder] = message.useMessage();
+    const { message } = useMessage();
     const [form] = Form.useForm();
 
     const onFinish = async (values) => {
         await authStore.signIn(values);
         if (authStore.error) {
-            messageApi.open({
+            message.open({
                 type: 'error',
                 content: authStore.error,
             });
@@ -19,14 +20,13 @@ const SignIn = observer(() => {
     };
 
     const onFinishFailed = () => {
-        messageApi.open({
+        message.open({
             type: 'error',
             content: 'Fill out the form correctly',
         });
     };
     return (
         <>
-            {contextHolder}
             <div className="m-auto bg-white p-8 shadow-2xl rounded-4xl w-full max-w-100 dark:bg-transparent dark:border dark:border-white/10 transition">
                 <h1 className="text-2xl mb-6 text-center">Log in</h1>
                 <Form
