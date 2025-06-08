@@ -3,7 +3,7 @@ import authStore from '../stores/authStore';
 import { Navigate, Outlet } from 'react-router';
 
 export const RequireAuth = observer(() => {
-    if (authStore.loading) return null;
+    if (authStore.loading) return <Outlet />;
     return authStore.isAuthenticated ? (
         <Outlet />
     ) : (
@@ -12,7 +12,7 @@ export const RequireAuth = observer(() => {
 });
 
 export const RedirectIfAuthenticated = observer(() => {
-    if (authStore.loading) return null;
+    if (authStore.loading) return <Outlet />;
     return !authStore.isAuthenticated ? (
         <Outlet />
     ) : (
