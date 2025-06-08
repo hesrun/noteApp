@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { Button, Col, Form, Input, Modal, Row } from 'antd';
+import { Button, Col, Form, Input, Modal, Row, Upload } from 'antd';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import TextArea from 'antd/es/input/TextArea';
 import { observer } from 'mobx-react-lite';
 import usePersons from '../../hooks/usePersons.js';
@@ -7,10 +8,28 @@ import personsStore from '../../stores/personsStore.js';
 
 const AddPersonModal = observer(({ isModalOpen, setIsModalOpen, data }) => {
     const [form] = Form.useForm();
-    const { addPerson, editPerson } = usePersons();
+    const { addPerson, editPerson, uploadPhoto, resetPhoto } = usePersons();
+
+    useEffect(() => {
+        if (isModalOpen) {
+            if (data) {
+                form.setFieldsValue(data);
+                personsStore.photoUrl = data.photo_url || null;
+            } else {
+                form.resetFields();
+                resetPhoto();
+            }
+        }
+    }, [data, isModalOpen]);
+
+    const handleUpload = async (file) => {
+        await uploadPhoto(file);
+        return false;
+    };
 
     const closeModal = () => {
         form.resetFields();
+        resetPhoto();
         setIsModalOpen(false);
     };
 
@@ -19,12 +38,17 @@ const AddPersonModal = observer(({ isModalOpen, setIsModalOpen, data }) => {
     };
 
     const onFinish = async (values) => {
+        const combinedValues = {
+            ...values,
+            photo_url: personsStore.photoUrl,
+        };
         if (!data) {
-            addPerson(values);
+            await addPerson(combinedValues);
         } else {
-            editPerson(data.id, values);
+            await editPerson(data.id, combinedValues);
         }
         form.resetFields();
+        resetPhoto();
         setIsModalOpen(false);
     };
 
@@ -66,6 +90,49 @@ const AddPersonModal = observer(({ isModalOpen, setIsModalOpen, data }) => {
                 ]}
             >
                 <Form form={form} layout="vertical" onFinish={onFinish}>
+                    <Form.Item>
+                        <Upload
+                            style={{ margin: 'auto' }}
+                            name="avatar"
+                            listType="picture-circle"
+                            fileList={
+                                personsStore.photoUrl
+                                    ? [
+                                          {
+                                              uid: '-1',
+                                              name: 'avatar.png',
+                                              status: 'done',
+                                              url: personsStore.photoUrl,
+                                          },
+                                      ]
+                                    : []
+                            }
+                            onRemove={() => resetPhoto()}
+                            showUploadList={{
+                                showPreviewIcon: false,
+                                showRemoveIcon: true,
+                            }}
+                            beforeUpload={handleUpload}
+                        >
+                            {!personsStore.photoUrl && (
+                                <button
+                                    style={{
+                                        border: 0,
+                                        background: 'none',
+                                        cursor: 'pointer',
+                                    }}
+                                    type="button"
+                                >
+                                    {personsStore.uploading ? (
+                                        <LoadingOutlined />
+                                    ) : (
+                                        <PlusOutlined />
+                                    )}
+                                    <div>Avatar</div>
+                                </button>
+                            )}
+                        </Upload>
+                    </Form.Item>
                     <Row gutter={16}>
                         <Col sm={24} md={12}>
                             <Form.Item

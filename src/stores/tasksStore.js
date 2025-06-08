@@ -28,7 +28,6 @@ class TasksStore {
         if (error) {
             this.error = error;
         } else {
-            console.log(data);
             this.tasks = [...this.tasks, ...data];
         }
 

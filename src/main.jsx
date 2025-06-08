@@ -45,7 +45,7 @@ const App = observer(() => {
                     <Routes>
                         <Route element={<MainLayout />}>
                             <Route element={<RequireAuth />}>
-                                <Route element={<InsideLayout />}>
+                                <Route element={<InsideLayout name="inside" />}>
                                     <Route
                                         path="dashboard"
                                         element={<Dashboard name="Dashboard" />}

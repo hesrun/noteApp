@@ -27,69 +27,74 @@ const SignIn = observer(() => {
     };
     return (
         <>
-            <div className="m-auto bg-white p-8 shadow-2xl rounded-4xl w-full max-w-100 dark:bg-transparent dark:border dark:border-white/10 transition">
-                <h1 className="text-2xl mb-6 text-center">Log in</h1>
-                <Form
-                    form={form}
-                    layout="vertical"
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
-                    className="w-full"
-                >
-                    <Form.Item
-                        name="email"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your email!',
-                            },
-                            { type: 'email', message: 'Invalid email format' },
-                        ]}
+            <div className="m-auto max-w-110 w-full">
+                <div className="mx-4 bg-white p-8 shadow-2xl rounded-4xl dark:bg-transparent dark:border dark:border-white/10 transition">
+                    <h1 className="text-2xl mb-6 text-center">Log in</h1>
+                    <Form
+                        form={form}
+                        layout="vertical"
+                        onFinish={onFinish}
+                        onFinishFailed={onFinishFailed}
+                        className="w-full"
                     >
-                        <Input
-                            placeholder="Email"
-                            size="large"
-                            prefix={<MailOutlined />}
-                        />
-                    </Form.Item>
-
-                    <Form.Item
-                        name="password"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your password!',
-                            },
-                            {
-                                min: 6,
-                                message:
-                                    'Password must be at least 6 characters',
-                            },
-                        ]}
-                    >
-                        <Input.Password
-                            placeholder="Password"
-                            size="large"
-                            prefix={<LockOutlined />}
-                        />
-                    </Form.Item>
-
-                    <Form.Item>
-                        <Button
-                            type="primary"
-                            block
-                            size="large"
-                            htmlType="submit"
-                            loading={authStore.loading}
+                        <Form.Item
+                            name="email"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your email!',
+                                },
+                                {
+                                    type: 'email',
+                                    message: 'Invalid email format',
+                                },
+                            ]}
                         >
-                            {authStore.loading ? 'Loading' : 'Continue'}
+                            <Input
+                                placeholder="Email"
+                                size="large"
+                                prefix={<MailOutlined />}
+                            />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="password"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your password!',
+                                },
+                                {
+                                    min: 6,
+                                    message:
+                                        'Password must be at least 6 characters',
+                                },
+                            ]}
+                        >
+                            <Input.Password
+                                placeholder="Password"
+                                size="large"
+                                prefix={<LockOutlined />}
+                            />
+                        </Form.Item>
+
+                        <Form.Item>
+                            <Button
+                                type="primary"
+                                block
+                                size="large"
+                                htmlType="submit"
+                                loading={authStore.loading}
+                            >
+                                {authStore.loading ? 'Loading' : 'Continue'}
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                    <div className="text-center">
+                        <Button color="default" variant="link">
+                            <Link to="/signup">I dont have Account</Link>
                         </Button>
-                    </Form.Item>
-                </Form>
-                <div className="text-center">
-                    <Button color="default" variant="link">
-                        <Link to="/signup">I dont have Account</Link>
-                    </Button>
+                    </div>
                 </div>
             </div>
         </>

@@ -7,6 +7,8 @@ const tableName = 'persons';
 class PersonsStore {
     persons = null;
     loading = false;
+    uploading = false;
+    photoUrl = null;
     error = null;
 
     constructor() {
@@ -74,15 +76,41 @@ class PersonsStore {
         if (error) {
             this.error = error;
         } else if (data && data.length > 0) {
-            console.log('data frome store', data);
             const updatedPerson = data[0];
-            console.log('updatedPerson', updatedPerson);
             this.persons = this.persons.map((item) =>
                 item.id === updatedPerson.id ? updatedPerson : item
             );
         }
 
         this.loading = false;
+    }
+
+    async uploadPhoto(file) {
+        this.uploading = true;
+        this.error = null;
+
+        const fileExt = file.name.split('.').pop();
+        const filename = `${Date.now()}.${fileExt}`;
+        const filePath = `${filename}`;
+
+        const { error } = await supabase.storage
+            .from('avatars')
+            .upload(filePath, file);
+
+        if (error) {
+            this.error = error.message || 'Upload failed';
+            this.uploading = false;
+            return null;
+        }
+        const { data } = supabase.storage
+            .from('avatars')
+            .getPublicUrl(filePath);
+        this.photoUrl = data.publicUrl;
+        this.uploading = false;
+        return this.photoUrl;
+    }
+    resetPhoto() {
+        this.photoUrl = null;
     }
 }
 

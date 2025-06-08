@@ -9,7 +9,7 @@
     @apply dark:border-white/10;
 }
 .rsw-toolbar {
-    @apply bg-white border-gray-100 dark:bg-white/10;
+    @apply bg-white border-gray-100 dark:bg-white/10 flex-wrap;
 }
 .rsw-btn {
     @apply inline-flex justify-center items-center dark:text-white/50 dark:hover:bg-white/10;

@@ -4,8 +4,8 @@ import { Link } from 'react-router';
 const Main = () => {
     return (
         <>
-            <div className="m-auto flex flex-col justify-center items-center max-w-200 text-center gap-y-8">
-                <h1 className="text-6xl">
+            <div className="m-auto flex flex-col justify-center items-center max-w-200 text-center gap-y-8 px-4">
+                <h1 className="text-3xl md:text-4xl xl:text-6xl">
                     Instant Notes — Always Within Reach
                 </h1>
                 <p>

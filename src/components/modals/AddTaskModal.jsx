@@ -20,8 +20,6 @@ const AddTaskModal = observer(({ isModalOpen, setIsModalOpen, data }) => {
     };
 
     const onFinish = async (values) => {
-        console.log(values);
-
         if (!data) {
             addTask(values);
         } else {

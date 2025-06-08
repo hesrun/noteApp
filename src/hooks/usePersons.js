@@ -54,6 +54,26 @@ const usePersons = () => {
         }
     };
 
-    return { getPersons, addPerson, removePerson, editPerson };
+    const uploadPhoto = async (file) => {
+        await personsStore.uploadPhoto(file);
+        if (personsStore.photoUrl) {
+            message.success('Photo uploaded');
+        } else {
+            message.error(personsStore.error || 'Upload failed');
+        }
+    };
+
+    const resetPhoto = () => {
+        personsStore.resetPhoto();
+    };
+
+    return {
+        getPersons,
+        addPerson,
+        removePerson,
+        editPerson,
+        uploadPhoto,
+        resetPhoto,
+    };
 };
 export default usePersons;

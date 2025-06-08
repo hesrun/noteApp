@@ -1,5 +1,5 @@
 import PageTitle from '../ui/PageTitle';
-import { Button, Dropdown, Empty, Table, Typography } from 'antd';
+import { Avatar, Button, Dropdown, Empty, Table, Typography } from 'antd';
 import { useEffect, useState } from 'react';
 import usePersons from '../hooks/usePersons.js';
 import { LuEllipsisVertical, LuPencil, LuPlus, LuTrash } from 'react-icons/lu';
@@ -13,6 +13,25 @@ const Persons = observer(({ name }) => {
     const { getPersons, removePerson } = usePersons();
 
     const columns = [
+        {
+            title: '',
+            dataIndex: 'photo_url',
+            key: 'avatar',
+            onCell: () => ({
+                style: {
+                    padding: 0,
+                    width: 60,
+                    maxWidth: 60,
+                    textAlign: 'center',
+                },
+            }),
+            render: (url) =>
+                url ? (
+                    <Avatar src={url} size={40} />
+                ) : (
+                    <Avatar icon={<UserOutlined />} size={40} />
+                ),
+        },
         {
             title: 'First name',
             dataIndex: 'first_name',
@@ -100,8 +119,6 @@ const Persons = observer(({ name }) => {
             setSelectedPerson(null);
         }
     }, [isModalOpen]);
-
-    console.log(personsStore.persons);
 
     return (
         <>
