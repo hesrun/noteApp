@@ -48,9 +48,11 @@ const Header = observer(() => {
                     <Button type="link">{authStore.user.email}</Button>
                 </Dropdown>
             ) : (
-                <Button color="default" variant="solid">
-                    <Link to="signup">Sign up</Link>
-                </Button>
+                <Link to="signup">
+                    <Button color="default" variant="solid">
+                        Sign up
+                    </Button>
+                </Link>
             )}
             <Button
                 type="primary"
