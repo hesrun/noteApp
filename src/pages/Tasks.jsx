@@ -3,10 +3,11 @@ import { LuPlus } from 'react-icons/lu';
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import tasksStore from '../stores/tasksStore';
-import { Button, Empty, Typography } from 'antd';
+import { Button } from 'antd';
 import AddTaskModal from '../components/modals/AddTaskModal';
 import TaskItem from '../components/TaskItem';
 import useTasks from '../hooks/useTasks';
+import TasksCap from '../components/caps/TasksCap.jsx';
 
 const Tasks = observer(({ name }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,31 +50,7 @@ const Tasks = observer(({ name }) => {
                     </div>
                 </>
             ) : (
-                <div className="h-full flex items-center justify-center">
-                    <Empty
-                        image="/tasks.png"
-                        styles={{
-                            image: {
-                                height: 100,
-                                display: 'flex',
-                                justifyContent: 'center',
-                            },
-                        }}
-                        description={
-                            <Typography.Title level={3}>
-                                Tasks list is empty
-                            </Typography.Title>
-                        }
-                    >
-                        <Button
-                            color="cyan"
-                            variant="solid"
-                            onClick={() => setIsModalOpen(true)}
-                        >
-                            Create new task
-                        </Button>
-                    </Empty>
-                </div>
+                <TasksCap capClick={setIsModalOpen} />
             )}
             <AddTaskModal
                 isModalOpen={isModalOpen}

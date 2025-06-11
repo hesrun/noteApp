@@ -5,8 +5,9 @@ import notesStore from '../stores/NotesStore';
 import PageTitle from '../ui/PageTitle';
 import { LuPlus } from 'react-icons/lu';
 import NoteItem from '../components/NoteItem';
-import { Button, Empty, Typography } from 'antd';
+import { Button } from 'antd';
 import useNotes from '../hooks/useNotes';
+import NotesCap from '../components/caps/NotesCap.jsx';
 
 const Notes = observer(({ name }) => {
     const { getNotes } = useNotes();
@@ -47,29 +48,7 @@ const Notes = observer(({ name }) => {
                     </div>
                 </>
             ) : (
-                <div className="h-full flex items-center justify-center">
-                    <Empty
-                        image="/notes.png"
-                        styles={{
-                            image: {
-                                height: 100,
-                                display: 'flex',
-                                justifyContent: 'center',
-                            },
-                        }}
-                        description={
-                            <Typography.Title level={3}>
-                                Notes list is empty
-                            </Typography.Title>
-                        }
-                    >
-                        <NavLink to="add">
-                            <Button color="cyan" variant="solid">
-                                Add new note
-                            </Button>
-                        </NavLink>
-                    </Empty>
-                </div>
+                <NotesCap />
             )}
         </>
     );

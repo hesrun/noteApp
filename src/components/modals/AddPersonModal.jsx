@@ -134,7 +134,7 @@ const AddPersonModal = observer(({ isModalOpen, setIsModalOpen, data }) => {
                         </Upload>
                     </Form.Item>
                     <Row gutter={16}>
-                        <Col sm={24} md={12}>
+                        <Col xs={24} md={12}>
                             <Form.Item
                                 name="first_name"
                                 label="First name"
@@ -158,14 +158,14 @@ const AddPersonModal = observer(({ isModalOpen, setIsModalOpen, data }) => {
                                 <Input size="large" />
                             </Form.Item>
                         </Col>
-                        <Col sm={24} md={12}>
+                        <Col xs={24} md={12}>
                             <Form.Item name="last_name" label="Last name">
                                 <Input size="large" />
                             </Form.Item>
                         </Col>
                     </Row>
                     <Row gutter={16}>
-                        <Col sm={24} md={12}>
+                        <Col xs={24} md={12}>
                             <Form.Item
                                 name="email"
                                 label="Email"
@@ -179,31 +179,31 @@ const AddPersonModal = observer(({ isModalOpen, setIsModalOpen, data }) => {
                                 <Input size="large" />
                             </Form.Item>
                         </Col>
-                        <Col sm={24} md={12}>
+                        <Col xs={24} md={12}>
                             <Form.Item name="phone" label="Phone number">
                                 <Input size="large" />
                             </Form.Item>
                         </Col>
                     </Row>
                     <Row gutter={16}>
-                        <Col sm={24} md={12}>
+                        <Col xs={24} md={12}>
                             <Form.Item name="country" label="Country">
                                 <Input size="large" />
                             </Form.Item>
                         </Col>
-                        <Col sm={24} md={12}>
+                        <Col xs={24} md={12}>
                             <Form.Item name="city" label="City">
                                 <Input size="large" />
                             </Form.Item>
                         </Col>
                     </Row>
                     <Row gutter={16}>
-                        <Col sm={24} md={18}>
+                        <Col xs={24} md={18}>
                             <Form.Item name="street" label="Street, app number">
                                 <Input size="large" />
                             </Form.Item>
                         </Col>
-                        <Col sm={24} md={6}>
+                        <Col xs={24} md={6}>
                             <Form.Item name="zip" label="Post Code">
                                 <Input size="large" />
                             </Form.Item>
